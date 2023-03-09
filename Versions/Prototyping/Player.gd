@@ -2,11 +2,9 @@ extends KinematicBody2D
 
 
 #const UP = Vector2(0, -1)
-#const GRAVITY = 20
-#const MAXFALLSPEED = 200
-#const MAXSPEED = 80
-#var motion = Vector2()
-export var speed = 400 # speed in pixels per second
+const GRAVITY = 10
+const MAXFALLSPEED = 20
+const SPEED = 8
 var screen_size # game window size
 
 # Called when the node enters the scene tree for the first time.
@@ -16,19 +14,18 @@ func _ready():
 
 func _physics_process(delta):
 	
+	position += Vector2(0,GRAVITY)
 	var velocity = Vector2.ZERO # the player's movement vector 
-	print(velocity)
 	
 	# adjusting the player's movement based on user input
 	if Input.is_action_pressed("right"):
-		velocity.x += 1
-		print(velocity.x)
+		velocity.x += SPEED
 	elif Input.is_action_pressed("left"):
-		velocity.x -= 1
-		print(velocity.x)
+		velocity.x -= SPEED
 	
 	
-	position += velocity
+	move_and_collide(velocity * delta) # collides but doesnt move
+	#position += velocity # moves but doesnt colides
 	
 	
 	

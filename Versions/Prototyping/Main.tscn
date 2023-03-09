@@ -29,17 +29,9 @@ extents = Vector2( 31, 31 )
 [node name="Main" type="Node2D"]
 script = SubResource( 1 )
 
-[node name="Ground" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 272 )
-
-[node name="Ground2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 248, 272 )
-
-[node name="Ground3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 376, 272 )
-
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 342, 351 )
+collision_layer = 2
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
@@ -62,3 +54,6 @@ zoom = Vector2( 0.5, 0.5 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Ground" parent="." instance=ExtResource( 1 )]
+position = Vector2( 339, 452 )
