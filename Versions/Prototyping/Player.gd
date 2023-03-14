@@ -23,7 +23,7 @@ func _physics_process(delta):
 	
 	# adjusting the player's movement based on user input
 	#print(is_on_floor())
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y -= jump_distance
 	if Input.is_action_pressed("right"):
 		velocity.x += speed
@@ -31,7 +31,9 @@ func _physics_process(delta):
 		velocity.x -= speed
 
 	# Actually move the character
-	move_and_slide(velocity)
+	# vector 2 UP defines the gorund. else eveything is a wall by default
+	move_and_slide(velocity, Vector2.UP) 
+	
 	
 	
 	# OLD CODE FRAGMENTS - maybe useful
