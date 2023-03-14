@@ -19,5 +19,4 @@ scale = Vector2( 0.116295, 0.184783 )
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )

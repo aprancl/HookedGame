@@ -36,6 +36,11 @@ jump={
  ]
 }
 
+[layer_names]
+
+2d_render/layer_1="environment"
+2d_render/layer_2="player"
+
 [mono]
 
 project/assembly_name="HookedPreAlpha"

@@ -56,4 +56,22 @@ __meta__ = {
 }
 
 [node name="Ground" parent="." instance=ExtResource( 1 )]
-position = Vector2( 339, 452 )
+position = Vector2( 352, 452 )
+
+[node name="Ground2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 520, 452 )
+
+[node name="Ground3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 184, 452 )
+
+[node name="Ground4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 736, 383 )
+
+[node name="Ground5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 920, 336 )
+
+[node name="Ground6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 632, 240 )
+
+[node name="Ground7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 136, 319 )
