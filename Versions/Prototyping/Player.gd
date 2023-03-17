@@ -23,8 +23,21 @@ func _physics_process(delta):
 	
 	# adjusting the player's movement based on user input
 	#print(is_on_floor())
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+	#	velocity.y -= jump_distance
+	
+	# jumping
+	if Input.is_action_just_pressed("jump") and Input.is_action_pressed("left") and is_on_floor():
 		velocity.y -= jump_distance
+		velocity.x -= speed * 10 # move player slightly to left when jumo left
+	elif Input.is_action_just_pressed("jump") and Input.is_action_pressed("right") and is_on_floor():
+		velocity.y -= jump_distance
+		velocity.x += speed *10 # move player slightly to right when jumo right
+	elif Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y -= jump_distance
+		velocity.x -= speed / 2
+		
+	# Horizontal
 	if Input.is_action_pressed("right"):
 		velocity.x += speed
 	elif Input.is_action_pressed("left"):
