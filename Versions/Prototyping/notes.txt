@@ -1,7 +1,0 @@
-
-a player can be a kinimaticBody2D or a RigidBody2D 
-    I think that a RigidBody2D will be better (maybe) for the physcis i need
-    then a player needs a sprite and a collisionShap2D (hitbox)
-
-
-
