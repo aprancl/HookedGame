@@ -38,8 +38,10 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("jump") and is_on_floor():
 		
 		velocity.y -= jump_distance
-		velocity.x -= speed / 2
-		velocity.y - jump_distance
+		#position.y -= Vector2(0,-100)
+		
+		#velocity.x -= speed / 2
+		#velocity.y - jump_distance
 		#$AnimatedSprite.animation = "jump"
 		#velocity = position.direction_to(Vector2(position.x, velocity.y - 1)) * (speed / 4)
 		#move_and_slide(velocity * 40)

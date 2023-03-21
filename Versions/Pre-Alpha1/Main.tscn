@@ -127,7 +127,10 @@ position = Vector2( 520, 452 )
 position = Vector2( 184, 452 )
 
 [node name="Ground4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 736, 383 )
+position = Vector2( 762, 408 )
+
+[node name="Ground10" parent="." instance=ExtResource( 1 )]
+position = Vector2( 855, 477 )
 
 [node name="Ground8" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1112, 288 )
