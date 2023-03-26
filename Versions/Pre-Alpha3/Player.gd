@@ -8,6 +8,8 @@ const max_movement_speed = 1900
 const friction_air = 0.95
 const friction_ground = 0.85
 const chain_pull = 100
+const hook_path = preload("res://Bullet.tscn") # for old hook
+#const hook_path = preload("res://Chain.tscn")
 
 # mutable data members
 export var velocity = Vector2(0,0)
@@ -22,7 +24,11 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	if not Input.is_action_pressed("aim"):
+	$Node2D.look_at(get_global_mouse_position())
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		shoot()
+	
+	if not Input.is_mouse_button_pressed(BUTTON_RIGHT):
 		$Sprite.hide()
 	else:
 		$Sprite.show()
@@ -83,6 +89,17 @@ func _physics_process(delta):
 			velocity.y = -verticle_propulsion	# Apply the jump-force
 
 
+func shoot():
+	var hook = hook_path.instance() 
+	
+	get_parent().add_child(hook)
+	hook.position = $Node2D/Position2D.global_position
+	
+	hook.velocity = get_global_mouse_position() - hook.position
+
+	
+	
+	
 # shoot hook method 
 	# 1: make a hook object that moves in a direction
 	# 2: instance the mode 
