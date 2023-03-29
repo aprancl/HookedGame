@@ -31,6 +31,10 @@ func _process(delta):
 		cool_down -= 1
 	if last_hook != null:
 		last_hook.player_position = $Node2D/Position2D.global_position
+	
+	if (last_hook != null and not Input.is_mouse_button_pressed(BUTTON_RIGHT)):
+		last_hook.queue_free()
+		last_hook = null
 		
 func _physics_process(delta):
 	
