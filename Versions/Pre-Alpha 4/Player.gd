@@ -9,6 +9,7 @@ const friction_air = 0.95
 const friction_ground = 0.85
 const chain_pull = 100
 const grapple_hook = preload("res://Chain.tscn")
+var last_hook = null
 var player_click = Vector2(0,0)
 #const hook_path = preload("res://Bullet.tscn") # for old hook
 #const hook_path = preload("res://Chain.tscn")
@@ -28,7 +29,6 @@ func _ready():
 func _process(delta):
 	if cool_down > 0:
 		cool_down -= 1
-	print(cool_down)
 		
 func _physics_process(delta):
 	
@@ -38,11 +38,13 @@ func _physics_process(delta):
 		cool_down = 100
 		pass
 	
-	if not Input.is_mouse_button_pressed(BUTTON_RIGHT):
-		$Sprite.hide()
-	else:
+	if (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")):
 		$Sprite.show()
+	else:
+		$Sprite.hide()
+		
 	$Sprite.look_at(get_global_mouse_position())
+	
 	if (get_global_mouse_position().x < position.x):
 		$Sprite.flip_v = true
 	else:
@@ -101,8 +103,21 @@ func _physics_process(delta):
 
 func shoot(pos):
 	
+	# delete previous hooks 
+	print(last_hook)
+	
+	if (last_hook != null):
+		print(last_hook.direction)
+	#	self.remove_child(last_hook)
+		last_hook.queue_free()
+		last_hook = null
+	
 	var hook = grapple_hook.instance() 
+	last_hook = hook;
+	
 	hook.direction = pos
+	hook.player_position = position
+	
 	
 	get_parent().add_child(hook)
 	hook.position = $Node2D/Position2D.global_position
@@ -112,7 +127,7 @@ func shoot(pos):
 	
 func _input(event: InputEvent):
 	
-	if event is InputEventMouseButton and Input.is_mouse_button_pressed(BUTTON_LEFT) and Input.is_mouse_button_pressed(BUTTON_RIGHT):
+	if event is InputEventMouseButton and Input.is_mouse_button_pressed(BUTTON_LEFT) and (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")):
 		player_click = event.position
 	
 # shoot hook method 
