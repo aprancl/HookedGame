@@ -29,6 +29,8 @@ func _ready():
 func _process(delta):
 	if cool_down > 0:
 		cool_down -= 1
+	if last_hook != null:
+		last_hook.player_position = $Node2D/Position2D.global_position
 		
 func _physics_process(delta):
 	
@@ -78,9 +80,6 @@ func _physics_process(delta):
 	velocity.x -= walk		# stops us from doubleing movement speed
 
 	# Manage friction and refresh jump and stuff
-	# TODO can delete ?
-	#velocity.y = clamp(velocity.y, -max_movement_speed, max_movement_speed)	# Make sure we are in our limits
-	#velocity.x = clamp(velocity.x, -max_movement_speed, max_movement_speed)
 	
 	# apply ground friction
 	if is_on_floor():

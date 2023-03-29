@@ -10,6 +10,8 @@ var player_position = Vector2(0,0)
 var is_hooked = true
 var is_flying = false
 
+var movement_speed = 3
+
 
 
 
@@ -24,8 +26,27 @@ func _process(delta):
 	# draw the chains and hook
 	if is_hooked or is_flying:
 
+		
 		var hook_position = $Tip.position
 		var start_point = to_local(player_position)
+		
+		# manage player movement while grappel shot is out
+		
+		#var player_walk = (Input.get_action_strength("right") - Input.get_action_strength("left")) * movement_speed
+		#player_position.x += player_walk
+		
+		
+		#if velocity.y > 0:
+		#	velocity.y *= friction_air
+		#if  not is_on_floor():
+		#	velocity.x *= friction_air
+
+	# Jumping
+		#if Input.is_action_just_pressed("space"):
+		#	velocity.y = -10	# Apply the jump-force
+		
+		#player_position.x -= player_walk
+		
 		$Links.position = (start_point + hook_position) / 2
 		$Links.rotation = $Links.position.angle_to_point(hook_position) - deg2rad(90)
 		$Tip.rotation = $Links.position.angle_to(hook_position) - deg2rad(0)
