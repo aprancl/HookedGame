@@ -23,24 +23,15 @@ func _process(delta):
 	
 	# draw the chains and hook
 	if is_hooked or is_flying:
-		
-		var player_click = get_global_mouse_position()
-		var hook_position = to_local(velocity)
+
+		var hook_position = $Tip.position
 		var start_point = to_local(player_position)
-		$Links.position = (start_point)
-		$Links.rotation = $Links.position.angle_to_point(velocity) - deg2rad(90)
-		#$Links.rotation = hook_position - player_position
-		print(start_point, hook_position)
-		
-		
-		#$Links.region_rect.size.y = to_local(player_position).normalized().length()  - velocity.normalized().length()
-		$Links.region_rect.size.y = velocity.length() * 5
+		$Links.position = (start_point + hook_position) / 2
+		$Links.rotation = $Links.position.angle_to_point(hook_position) - deg2rad(90)
+		$Tip.rotation = $Links.position.angle_to(hook_position) - deg2rad(0)
 	
-		
-		#print(to_local(player_position).normalized().length(),"---",velocity.normalized().length())
-		
-		#$Links.rotation = self.position.angle_to_point(hook_position) - deg2rad(0)
-		#$Tip.rotation = self.position.angle_to_point(hook_position) - deg2rad(90)
+		$Links.region_rect.size.y = start_point.distance_to(hook_position) * 2.5
+	
 		
 		pass
 	

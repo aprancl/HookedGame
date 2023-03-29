@@ -104,11 +104,7 @@ func _physics_process(delta):
 func shoot(pos):
 	
 	# delete previous hooks 
-	print(last_hook)
-	
 	if (last_hook != null):
-		print(last_hook.direction)
-	#	self.remove_child(last_hook)
 		last_hook.queue_free()
 		last_hook = null
 	
@@ -116,7 +112,7 @@ func shoot(pos):
 	last_hook = hook;
 	
 	hook.direction = pos
-	hook.player_position = position
+	hook.player_position = $Node2D/Position2D.global_position
 	
 	
 	get_parent().add_child(hook)
