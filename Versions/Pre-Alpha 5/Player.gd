@@ -1,3 +1,4 @@
+# thing one thing two
 extends KinematicBody2D
 
 # constants
@@ -83,24 +84,24 @@ func _physics_process(delta):
 		$AnimatedSprite.animation = "idle";
 	
 	# PLAYER MOVEMENT --> HOOK PHYSICS
-	#if is_hooked and last_hook != null:
+	if is_hooked and last_hook != null:
 		
-	#	var pull_direction = to_local(last_hook.get_node("Tip").position).normalized()
-	#	chain_velocity = pull_direction * chain_movement_speed
+		var pull_direction = to_local(last_hook.get_node("Tip").position).normalized()
+		chain_velocity = pull_direction * chain_movement_speed
 		
-	#	if chain_velocity.y > 0:
-	#		chain_velocity.y *= 0.50
-	#	else:
-	#		chain_velocity.y *= 1.6
-	#	
-	#	if sign(chain_velocity.x) != sign(walk):
-	#		chain_velocity.y *= 0.7
-	#	
-	#	pass
-	#else:
-	#	chain_velocity = Vector2(0,0)
-	#
-	#velocity += chain_velocity
+		if chain_velocity.y > 0:
+			chain_velocity.y *= 0.50
+		else:
+			chain_velocity.y *= 1.6
+		
+		if sign(chain_velocity.x) != sign(walk):
+			chain_velocity.y *= 0.7
+		
+		pass
+	else:
+		chain_velocity = Vector2(0,0)
+	
+	velocity += chain_velocity
 	
 
 	# Manage friction and refresh jump and stuff
