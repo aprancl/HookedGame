@@ -19,6 +19,7 @@ export var velocity = Vector2(0,0)
 export var chain_velocity = Vector2(0,0)
 var can_jump = false
 var cool_down = 0
+var is_hooked = false;
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,25 +37,35 @@ func _process(delta):
 		last_hook.queue_free()
 		last_hook = null
 		
+		
 func _physics_process(delta):
 	
+	# Literally shooting the grapple hook
 	$Node2D.look_at(get_global_mouse_position())
-	if Input.is_mouse_button_pressed(BUTTON_LEFT) and cool_down == 0:
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and cool_down == 0:
 		shoot(player_click)
 		cool_down = 100
 		pass
 	
+	# Aiming the Grapple cannon
+	# whether or not to draw the hook
 	if (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")):
 		$Sprite.show()
 	else:
 		$Sprite.hide()
-		
+	# if the canon has been drawn, it needs to point the mouse
 	$Sprite.look_at(get_global_mouse_position())
 	
+	# this is sort of like dead code
+	# it flips the sprite of the canon if e rotate a certain amount, so that the cannon is not upside down
+	# well, it turns out the cannon is mirrored on the horizontal axis, so it does not matter 
+	# I just want this here so that, if I change the sprite, it still works
 	if (get_global_mouse_position().x < position.x):
 		$Sprite.flip_v = true
 	else:
 		$Sprite.flip_v = false
+	
+	# PLAYER MOVEMENT
 	
 	# add gravity
 	velocity.y += gravity
@@ -114,8 +125,10 @@ func shoot(pos):
 	var hook = grapple_hook.instance() 
 	last_hook = hook;
 	
+	# update some hook variables
 	hook.direction = pos
 	hook.player_position = $Node2D/Position2D.global_position
+	hook.is_flying = true;
 	
 	
 	get_parent().add_child(hook)
@@ -126,7 +139,7 @@ func shoot(pos):
 	
 func _input(event: InputEvent):
 	
-	if event is InputEventMouseButton and Input.is_mouse_button_pressed(BUTTON_LEFT) and (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")):
+	if event is InputEventMouseButton and (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")):
 		player_click = event.position
 	
 # shoot hook method 

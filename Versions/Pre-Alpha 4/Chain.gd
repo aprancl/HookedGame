@@ -1,5 +1,9 @@
 extends Node2D
 
+
+# the closer the mouse is to the player, the less far that the hook is shot
+
+
 var velocity = Vector2(0,1)
 var gravity = 2
 var hook_speed = 300
@@ -7,7 +11,6 @@ var hook_position := Vector2(0,0)
 var direction := Vector2(0,0)
 var player_position = Vector2(0,0)
 
-var is_hooked = true
 var is_flying = false
 
 var movement_speed = 3
@@ -21,43 +24,18 @@ func _ready():
 
 func _process(delta):
 	
-	
-	
 	# draw the chains and hook
-	if is_hooked or is_flying:
+	if is_flying:
 
-		
 		var hook_position = $Tip.position
 		var start_point = to_local(player_position)
 		
-		# manage player movement while grappel shot is out
-		
-		#var player_walk = (Input.get_action_strength("right") - Input.get_action_strength("left")) * movement_speed
-		#player_position.x += player_walk
-		
-		
-		#if velocity.y > 0:
-		#	velocity.y *= friction_air
-		#if  not is_on_floor():
-		#	velocity.x *= friction_air
-
-	# Jumping
-		#if Input.is_action_just_pressed("space"):
-		#	velocity.y = -10	# Apply the jump-force
-		
-		#player_position.x -= player_walk
-		
 		$Links.position = (start_point + hook_position) / 2
 		$Links.rotation = $Links.position.angle_to_point(hook_position) - deg2rad(90)
-		$Tip.rotation = $Links.position.angle_to(hook_position) - deg2rad(0)
+		$Tip.rotation = $Links.position.angle_to_point(hook_position) - deg2rad(90)
 	
 		$Links.region_rect.size.y = start_point.distance_to(hook_position) * 2.5
 	
-		
-		pass
-	
-	
-	pass
 	
 func _physics_process(delta):
 	
@@ -69,6 +47,7 @@ func _physics_process(delta):
 	if collisoin_data != null:
 		hook_speed = 0;
 		gravity = 0;
+		get_tree().get_root().get_node("Main/Player").is_hooked = true;
 		return
 	
 	#$Tip.global_position = hook_position
