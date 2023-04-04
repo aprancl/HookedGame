@@ -91,14 +91,14 @@ func _physics_process(delta):
 	# PLAYER MOVEMENT --> HOOK PHYSICS
 	if is_hooked and last_hook != null:
 		
-		var pull_direction = to_local(last_hook.get_node("Tip").position).normalized()
-		print(pull_direction)
+		var pull_direction = to_local(last_hook.get_node("Tip").global_position).normalized()
+		#print(pull_direction)
 		#var point_instance = point.instance()
 		#point_instance.position = pull_direction
 		#get_parent().add_child(point_instance)
 		chain_velocity = pull_direction * chain_movement_speed
 		
-		if chain_velocity.y > 0:
+		if chain_velocity.y > 0 and Input.is_action_pressed("rappel_up"):
 			chain_velocity.y *= 0.50
 		else:
 			chain_velocity.y *= 1.6
