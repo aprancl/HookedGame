@@ -10,7 +10,6 @@ const max_movement_speed = 1900
 const friction_air = 0.95
 const friction_ground = 0.85
 const grapple_hook = preload("res://Chain.tscn")
-const point = preload("res://Point.tscn")
 var last_hook = null
 var player_click = Vector2(0,0)
 
@@ -93,9 +92,6 @@ func _physics_process(delta):
 		
 		var pull_direction = to_local(last_hook.get_node("Tip").global_position).normalized()
 		#print(pull_direction)
-		#var point_instance = point.instance()
-		#point_instance.position = pull_direction
-		#get_parent().add_child(point_instance)
 		chain_velocity = pull_direction * chain_movement_speed
 		
 		if chain_velocity.y > 0 and Input.is_action_pressed("rappel_up"):
