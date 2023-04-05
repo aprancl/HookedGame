@@ -4,7 +4,7 @@
 [ext_resource path="res://Lever.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
+extents = Vector2( 20, 17.5 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -35,7 +35,7 @@ script = ExtResource( 2 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, 6 )
+position = Vector2( 0, 3.5 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Area2D"]
