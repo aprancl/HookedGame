@@ -6,7 +6,7 @@ extends Node2D
 
 var velocity = Vector2(0,1)
 var gravity = 2
-var hook_speed = 300
+var hook_speed = 400
 var hook_position := Vector2(0,0)
 var direction := Vector2(0,0)
 var player_position = Vector2(0,0)
@@ -34,7 +34,7 @@ func _process(delta):
 		$Links.rotation = $Links.position.angle_to_point(hook_position) - deg2rad(90)
 		$Tip.rotation = $Links.position.angle_to_point(hook_position) - deg2rad(90)
 	
-		$Links.region_rect.size.y = start_point.distance_to(hook_position) * 2.5
+		$Links.region_rect.size.y = start_point.distance_to(hook_position) * 2.4
 	
 	
 func _physics_process(delta):

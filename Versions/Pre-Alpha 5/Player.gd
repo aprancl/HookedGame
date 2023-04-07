@@ -2,6 +2,7 @@
 extends KinematicBody2D
 
 # constants
+const player_start_position := Vector2(-606, 306);
 const verticle_propulsion = 1000
 const movement_speed = 350
 const chain_movement_speed = 100
@@ -41,7 +42,10 @@ func _process(delta):
 		
 func _physics_process(delta):
 	
-		
+	
+	# make player restart the game if they fall off of the map
+	if self.position.y >= 1500:
+		self.position = player_start_position
 	
 	# Literally shooting the grapple hook
 	$Node2D.look_at(get_global_mouse_position())
@@ -88,16 +92,18 @@ func _physics_process(delta):
 		$AnimatedSprite.animation = "idle";
 	
 	# PLAYER MOVEMENT --> HOOK PHYSICS
-	if is_hooked and last_hook != null:
+	if is_hooked and last_hook != null and Input.is_action_pressed("rappel_up"):
 		
 		var pull_direction = to_local(last_hook.get_node("Tip").global_position).normalized()
 		#print(pull_direction)
 		chain_velocity = pull_direction * chain_movement_speed
 		
-		if chain_velocity.y > 0 and Input.is_action_pressed("rappel_up"):
+		if chain_velocity.y > 0 :
+			print(0.5)
 			chain_velocity.y *= 0.50
 		else:
-			chain_velocity.y *= 1.6
+			print(1.2)
+			chain_velocity.y *= 1.2
 		
 		if sign(chain_velocity.x) != sign(walk):
 			chain_velocity.y *= 0.7

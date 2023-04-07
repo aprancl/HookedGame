@@ -13,6 +13,8 @@ func _ready():
 	# first door pair
 	$Door1_start.endpoint_door_reference = $Door1_end
 	$Door1_end.endpoint_door_reference = $Door1_start
+	$Door1_end.target_lever_reference = $Lever_door1
+	$Door1_start.target_lever_reference = $Lever_door1
 	
 	
 	pass # Replace with function body.
@@ -28,6 +30,5 @@ func _physics_process(delta):
 	else:
 		$Door1_start.is_open = false
 		$Door1_end.is_open = false
-		
-	print(last_door_entered)
+	
 	pass
