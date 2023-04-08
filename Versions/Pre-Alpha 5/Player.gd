@@ -49,7 +49,7 @@ func _physics_process(delta):
 	
 	# Literally shooting the grapple hook
 	$Node2D.look_at(get_global_mouse_position())
-	if (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and cool_down == 0:
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and cool_down == 0 and (self.is_on_floor() or self.is_on_wall()):
 		shoot(player_click)
 		cool_down = 100
 		pass
