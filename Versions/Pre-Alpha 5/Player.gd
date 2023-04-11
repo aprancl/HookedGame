@@ -150,16 +150,17 @@ func shoot(pos):
 		last_hook.queue_free()
 		last_hook = null
 	
+	# instance another hook object
 	var hook = grapple_hook.instance() 
 	last_hook = hook;
 	
 	# update some hook variables
 	hook.direction = pos
-	hook.player_position = $Node2D/Position2D.global_position
+	hook.player_position = $Node2D/Position2D.global_position # has to be the global position
 	hook.is_shot = true;
 	is_hooked = false;
 	
-	
+	# add the hook object that we made to the scene tree
 	get_parent().add_child(hook)
 	hook.position = $Node2D/Position2D.global_position
 	
@@ -168,6 +169,7 @@ func shoot(pos):
 	
 func _input(event: InputEvent):
 	
+	# checks for input every frame, and if we are aiming and shooting, then we set the position variable 
 	if event is InputEventMouseButton and (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")):
 		player_click = event.position
 	
