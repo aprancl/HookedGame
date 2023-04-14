@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/environment/menu_background copy.png" type="Texture" id=1]
 [ext_resource path="res://Menu.gd" type="Script" id=2]
+[ext_resource path="res://assets/the_centurion/The Centurion .ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+font_data = ExtResource( 3 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -37,6 +44,19 @@ margin_top = 145.0
 margin_right = 290.0
 margin_bottom = 165.0
 text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.486
+anchor_top = 0.151
+anchor_right = 0.5
+anchor_bottom = 0.266
+margin_left = -146.0
+margin_right = 146.0
+margin_bottom = 170.0
+theme = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Hooked"
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

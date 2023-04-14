@@ -99,10 +99,10 @@ func _physics_process(delta):
 		chain_velocity = pull_direction * chain_movement_speed
 		
 		if chain_velocity.y > 0 :
-			print(0.5)
+			#print(0.5)
 			chain_velocity.y *= 0.50
 		else:
-			print(1.2)
+			#print(1.2)
 			chain_velocity.y *= 1.2
 		
 		if sign(chain_velocity.x) != sign(walk):

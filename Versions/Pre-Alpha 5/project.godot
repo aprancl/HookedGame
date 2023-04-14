@@ -14,6 +14,10 @@ config/name="PreAlpha5"
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+mouse_cursor/custom_image="res://assets/grappel hook/crosshair-blue-variant/CrosshairNormalBlue.png"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
