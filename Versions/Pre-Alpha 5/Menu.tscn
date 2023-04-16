@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/environment/menu_background copy.png" type="Texture" id=1]
 [ext_resource path="res://Menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/the_centurion/The Centurion .ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="Theme" id=4]
 
 [sub_resource type="Theme" id=1]
 
@@ -37,12 +39,16 @@ alignment = 1
 margin_top = 110.0
 margin_right = 290.0
 margin_bottom = 130.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Start"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 margin_top = 145.0
 margin_right = 290.0
 margin_bottom = 165.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Quit"
 
 [node name="Label" type="Label" parent="."]
