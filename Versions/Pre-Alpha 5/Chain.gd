@@ -5,8 +5,8 @@ extends Node2D
 
 
 var velocity = Vector2(0,1)
-var gravity = 2
-var hook_speed = 400
+var gravity = 3
+var hook_speed = 500
 var hook_position := Vector2(0,0)
 var direction := Vector2(0,0)
 var player_position = Vector2(0,0)

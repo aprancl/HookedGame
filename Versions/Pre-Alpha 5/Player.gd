@@ -164,6 +164,7 @@ func shoot(pos):
 	get_parent().add_child(hook)
 	hook.position = $Node2D/Position2D.global_position
 	
+	#direction
 	hook.velocity = get_global_mouse_position() - hook.position
 
 	
