@@ -24,11 +24,11 @@ var is_hooked = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_parent().get_node("BackgroundMusic/AudioStreamPlayer").play()
 	pass # Replace with function body.
 	
 	
 func _process(delta):
-	pass
 	if cool_down > 0:
 		cool_down -= 1
 	if last_hook != null:
@@ -42,7 +42,11 @@ func _process(delta):
 		
 func _physics_process(delta):
 	
-	
+	# replay music 
+	if get_parent().get_node("BackgroundMusic/AudioStreamPlayer").playing == false:
+		get_parent().get_node("BackgroundMusic/AudioStreamPlayer").play()
+		
+		
 	# make player restart the game if they fall off of the map
 	if self.position.y >= 1500:
 		self.position = player_start_position

@@ -17,6 +17,12 @@ config/icon="res://icon.png"
 [display]
 
 mouse_cursor/custom_image="res://assets/grappel hook/crosshair-blue-variant/CrosshairNormalBlue.png"
+mouse_cursor/custom_image_hotspot=Vector2( 10, 10 )
+
+[global]
+
+curs=false
+cursor=false
 
 [gui]
 
