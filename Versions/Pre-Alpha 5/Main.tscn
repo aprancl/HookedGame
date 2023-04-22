@@ -788,7 +788,7 @@ position = Vector2( 36, 0 )
 [node name="GunShot" type="AudioStreamPlayer2D" parent="Player/Node2D"]
 position = Vector2( 603, -335 )
 stream = ExtResource( 32 )
-attenuation = 1.41421
+attenuation = 6.06285
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -1069,4 +1069,4 @@ position = Vector2( 3156, -3784 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BackgroundMusic"]
 stream = ExtResource( 31 )
-volume_db = -25.38
+volume_db = -30.359

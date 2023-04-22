@@ -2,11 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-valid=false
+path="res://.import/hit.wav-96dc477cdf4a42f381370dba6e3f75ce.sample"
 
 [deps]
 
 source_file="res://assets/audio/hit.wav"
+dest_files=[ "res://.import/hit.wav-96dc477cdf4a42f381370dba6e3f75ce.sample" ]
+
 [params]
 
 force/8_bit=false
