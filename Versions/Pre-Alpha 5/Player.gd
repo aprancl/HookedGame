@@ -11,7 +11,9 @@ const max_movement_speed = 1900
 const friction_air = 0.95
 const friction_ground = 0.85
 const grapple_hook = preload("res://Chain.tscn")
+const particles = preload("res://Particles2D.tscn")
 var last_hook = null
+var last_smoke = null
 var player_click = Vector2(0,0)
 
 # mutable data members
@@ -45,7 +47,6 @@ func _physics_process(delta):
 	# replay music 
 	if get_parent().get_node("BackgroundMusic/AudioStreamPlayer").playing == false:
 		get_parent().get_node("BackgroundMusic/AudioStreamPlayer").play()
-		
 		
 	# make player restart the game if they fall off of the map
 	if self.position.y >= 1500:
@@ -153,10 +154,15 @@ func shoot(pos):
 	if (last_hook != null):
 		last_hook.queue_free()
 		last_hook = null
+		last_smoke.queue_free()
+		last_smoke = null
 	
 	# instance another hook object
 	var hook = grapple_hook.instance() 
+	var smoke = particles.instance()
 	last_hook = hook;
+	last_smoke = smoke;
+	
 	
 	# update some hook variables
 	hook.direction = pos
@@ -165,11 +171,18 @@ func shoot(pos):
 	is_hooked = false;
 	
 	# add the hook object that we made to the scene tree
+	
 	get_parent().add_child(hook)
 	hook.position = $Node2D/Position2D.global_position
+	get_parent().add_child(smoke)
+	smoke.position = $Node2D/Position2D.global_position
 	
 	#direction
 	hook.velocity = get_global_mouse_position() - hook.position
+	
+	# Sound and Camera Effects
+	$Node2D/GunShot.play()
+	
 
 	
 func _input(event: InputEvent):

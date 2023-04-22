@@ -58,6 +58,8 @@ func _physics_process(delta):
 		hook_speed = 0;
 		gravity = 0;
 		get_tree().get_root().get_node("Main/Player").is_hooked = true;
+		
+		print(collisoin_data);
 
 		return
 	
