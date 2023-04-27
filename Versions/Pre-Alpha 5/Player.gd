@@ -19,7 +19,6 @@ var player_click = Vector2(0,0)
 # mutable data members
 export var velocity = Vector2(0,0)
 export var chain_velocity = Vector2(0,0)
-var can_jump = false
 var cool_down = 0
 var is_hooked = false;
 
@@ -54,7 +53,7 @@ func _physics_process(delta):
 	
 	# Literally shooting the grapple hook
 	$Node2D.look_at(get_global_mouse_position())
-	if (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and cool_down == 0 and (self.is_on_floor() or self.is_on_wall()):
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT) or Input.is_action_pressed("shoot")) and (Input.is_mouse_button_pressed(BUTTON_RIGHT) or Input.is_action_pressed("aim")) and cool_down == 0 and (self.is_on_floor() or self.is_on_wall()):
 		shoot(player_click)
 		cool_down = 100
 		pass
@@ -74,8 +73,10 @@ func _physics_process(delta):
 	# I just want this here so that, if I change the sprite, it still works
 	if (get_global_mouse_position().x < position.x):
 		$Sprite.flip_v = true
+		$AnimatedSprite.flip_h = true
 	else:
 		$Sprite.flip_v = false
+		$AnimatedSprite.flip_h = false
 	
 	# PLAYER MOVEMENT
 	
@@ -87,12 +88,20 @@ func _physics_process(delta):
 	var walk = (Input.get_action_strength("right") - Input.get_action_strength("left")) * movement_speed
 	
 	#play right animations
-	if Input.is_action_pressed("left"):
+	if not is_on_floor() and Input.is_action_pressed("left"):
+		$AnimatedSprite.animation = "jump"
+		$AnimatedSprite.flip_h = true
+	elif not is_on_floor() and Input.is_action_pressed("right"):
+		$AnimatedSprite.animation = "jump"
+		$AnimatedSprite.flip_h = false
+	elif Input.is_action_pressed("left"):
 		$AnimatedSprite.animation = "run";
 		$AnimatedSprite.flip_h = true
 	elif Input.is_action_pressed("right"):
 		$AnimatedSprite.animation = "run";
 		$AnimatedSprite.flip_h = false
+	elif not is_on_floor():
+		$AnimatedSprite.animation = "jump";
 	else:
 		$AnimatedSprite.animation = "idle";
 	
@@ -132,7 +141,6 @@ func _physics_process(delta):
 	# apply ground friction
 	if is_on_floor():
 		velocity.x *= friction_ground	# Apply friction only on x (we are not moving on y anyway)
-		can_jump = true 				# We refresh our air-jump
 		if velocity.y >= 5:		# Keep the y-velocity small such that
 			velocity.y = 5		# gravity doesn't make this number huge
 
@@ -170,6 +178,11 @@ func shoot(pos):
 	hook.is_shot = true;
 	is_hooked = false;
 	
+	
+
+	#$Camera2D.offset += Vector2(0, 10.5);
+	
+	
 	# add the hook object that we made to the scene tree
 	
 	get_parent().add_child(hook)
@@ -180,10 +193,24 @@ func shoot(pos):
 	#direction
 	hook.velocity = get_global_mouse_position() - hook.position
 	
+	process_knockback($AnimatedSprite.flip_h);
+	
+	
 	# Sound and Camera Effects
 	$Node2D/GunShot.play()
 	
 
+func process_knockback(direction):
+	
+	print("knockback")
+	var knock = Vector2(800,0);
+	if direction:
+		self.velocity = move_and_slide(knock, Vector2.UP);
+	else:
+		knock.x *= -1
+		self.velocity = move_and_slide(knock, Vector2.UP);
+		
+	pass
 	
 func _input(event: InputEvent):
 	

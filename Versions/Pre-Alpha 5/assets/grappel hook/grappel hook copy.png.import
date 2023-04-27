@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grappel hook copy.png-3cc337e97b90abce0379eab65d08c419.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/grappel hook/grappel hook copy.png"
-dest_files=[ "res://.import/grappel hook copy.png-3cc337e97b90abce0379eab65d08c419.stex" ]
-
 [params]
 
 compress/mode=0

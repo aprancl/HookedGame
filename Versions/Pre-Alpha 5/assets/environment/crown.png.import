@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crown.png-9756e403cc67456200476ed24cd8774c.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/environment/crown.png"
-dest_files=[ "res://.import/crown.png-9756e403cc67456200476ed24cd8774c.stex" ]
-
 [params]
 
 compress/mode=0

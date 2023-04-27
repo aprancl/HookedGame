@@ -5,12 +5,13 @@ extends Node2D
 
 
 var velocity = Vector2(0,1)
-var gravity = 3
-var hook_speed = 500
+var gravity = 4
+var hook_speed = 600
 var hook_position := Vector2(0,0)
 var direction := Vector2(0,0)
 var player_position = Vector2(0,0)
 var collisoin_data;
+var has_played_hit = false
 
 var is_shot = false
 
@@ -58,8 +59,13 @@ func _physics_process(delta):
 		hook_speed = 0;
 		gravity = 0;
 		get_tree().get_root().get_node("Main/Player").is_hooked = true;
-		$Tip/AudioStreamPlayer2D.play()
-		print(collisoin_data);
+		
+		if not has_played_hit:
+			print("hit");
+			$Tip/AudioStreamPlayer2D.play()
+			has_played_hit = true;
+		
+		
 
 		return
 	

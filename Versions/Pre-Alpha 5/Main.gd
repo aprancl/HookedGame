@@ -2,6 +2,8 @@ extends Node2D
 var last_door_entered = null;
 
 
+# *important* there is a much better way to do this looking back
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -9,6 +11,7 @@ var last_door_entered = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	
 	# Door 1 pairing
 	$Door1_start.endpoint_door_reference = $Door1_end
@@ -78,7 +81,7 @@ func _ready():
 	$DoorPuzzle/DoorCorrect2.target_lever_reference = $DoorPuzzle/LeverDoorPuzzle
 	
 	
-	pass # Replace with function body.
+	pass
 
 
 

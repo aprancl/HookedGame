@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/environment/end_screen.png" type="Texture" id=1]
 [ext_resource path="res://assets/the_centurion/The Centurion .ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://GameOver.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/alexander-nakarada-medieval-loop-one.mp3" type="AudioStream" id=4]
 
 [sub_resource type="Theme" id=1]
 
@@ -16,6 +17,10 @@ font_data = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -21.046
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
