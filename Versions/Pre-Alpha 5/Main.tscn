@@ -1017,7 +1017,7 @@ position = Vector2( 1687, -2685 )
 position = Vector2( 1654, -2007 )
 
 [node name="Node2D" parent="." instance=ExtResource( 30 )]
-position = Vector2( 5599, -3764 )
+position = Vector2( 5657, -3760 )
 
 [node name="BackgroundMusic" type="Node2D" parent="."]
 
