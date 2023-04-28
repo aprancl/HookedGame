@@ -202,7 +202,6 @@ func shoot(pos):
 
 func process_knockback(direction):
 	
-	print("knockback")
 	var knock = Vector2(800,0);
 	if direction:
 		self.velocity = move_and_slide(knock, Vector2.UP);

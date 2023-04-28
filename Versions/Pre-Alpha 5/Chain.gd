@@ -48,7 +48,7 @@ func _physics_process(delta):
 	
 	# in the unique case that we hooked something and it is metal
 	if collisoin_data != null and collisoin_data.get_collider() is StaticBody2D:
-			print(collisoin_data.get_collider())
+			
 			velocity = velocity.bounce(collisoin_data.normal)
 			velocity.x *= 0.9
 			velocity.y *= 0.9
@@ -61,7 +61,6 @@ func _physics_process(delta):
 		get_tree().get_root().get_node("Main/Player").is_hooked = true;
 		
 		if not has_played_hit:
-			print("hit");
 			$Tip/AudioStreamPlayer2D.play()
 			has_played_hit = true;
 		
