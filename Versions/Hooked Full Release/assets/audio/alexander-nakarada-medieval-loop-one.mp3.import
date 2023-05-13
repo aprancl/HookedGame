@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/alexander-nakarada-medieval-loop-one.mp3-0de00126970c441492bb23710b78b90d.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/alexander-nakarada-medieval-loop-one.mp3"
+dest_files=[ "res://.import/alexander-nakarada-medieval-loop-one.mp3-0de00126970c441492bb23710b78b90d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

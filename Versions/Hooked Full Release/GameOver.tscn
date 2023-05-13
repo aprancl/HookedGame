@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/environment/end_screen.png" type="Texture" id=1]
+[ext_resource path="res://assets/the_centurion/The Centurion .ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://GameOver.gd" type="Script" id=3]
+[ext_resource path="res://assets/audio/alexander-nakarada-medieval-loop-one.mp3" type="AudioStream" id=4]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -21.046
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.486
+anchor_top = 0.151
+anchor_right = 0.5
+anchor_bottom = 0.266
+margin_left = 34.336
+margin_top = -59.6
+margin_right = 326.336
+margin_bottom = 110.4
+theme = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "The End"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -290.0
+margin_top = -80.0
+custom_constants/separation = 15
+alignment = 1
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_top = 12.0
+margin_right = 290.0
+margin_bottom = 32.0
+theme = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Restart"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 47.0
+margin_right = 290.0
+margin_bottom = 67.0
+theme = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
